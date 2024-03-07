@@ -1,8 +1,33 @@
+import sys
 from source.lexer import *
+from util.file import *
+
+def run(code: str, flags):
+	tokens = lexerize(code)
+
+	if "--lexer" in flags:
+		print(tokens)
 
 def main():
-	tokens = lexerize("let x = 10 + 4 - 5; let y = \"lol\"; let a = true; let π = 3.14;")
-	print(tokens)
+	args = sys.argv
+
+	if len(args) == 0:
+		print("ERROR: Filename should be specified!")
+		return
+
+	filename = args[0]
+	code = read_file(filename)
+
+	if code == None:
+		print(f"ERROR: Filename \"{filename}\" not found!")
+		return
+	
+	flags = args
+	flags.pop(0)
+
+	run(code, flags)
 
 if __name__ == "__main__":
+	sys.argv.pop(0)
+
 	main()

@@ -8,6 +8,14 @@
 // ---------------------------------------------------
 
 // 3/7/2024
+- The language now runs the files
+- Created "util" folder
+	+ file.py
+- Created "tests" folder
+	+ test.pha
+- Added CLI
+	+ --lexer: Shows the lexer output (tokens)
+-----------
 - Added more token types
 	+ Closure
 	+ Symbol
