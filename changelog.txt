@@ -8,6 +8,17 @@
 // ---------------------------------------------------
 
 // 3/7/2024
+- Added more token types
+	+ Closure
+	+ Symbol
+	+ Int | Float
+	+ String
+	+ Keyword
+	+ Literal
+	+ Identifier
+- Added more token values to the "Operator" token type
+	+ "=", "<", ">"
+-----------
 - Initial release
 - Created main.py
 - Created "source" folder
