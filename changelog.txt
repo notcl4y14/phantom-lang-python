@@ -1,0 +1,16 @@
+// ---------------------------------------------------
+// phantom-lang
+// https://github.com/notcl4y14/phantom-lang
+// ---------------------------------------------------
+
+// ---------------------------------------------------
+// UNDER CONSTRUCTION VERSIONS
+// ---------------------------------------------------
+
+// 3/7/2024
+- Initial release
+- Created main.py
+- Created "source" folder
+	+ lexer.py
+	+ token.py
+- Added "Operator" token type
