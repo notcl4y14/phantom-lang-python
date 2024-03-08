@@ -7,6 +7,26 @@
 // UNDER CONSTRUCTION VERSIONS
 // ---------------------------------------------------
 
+// 3/8/2024
+- The debug output now has closures
+- Added more values to token types
+	+ Operator
+		* +=
+		* -=
+		* *=
+		* /=
+		* %=
+		* ^=
+		* <=
+		* >=
+		* ==
+		* !=
+	+ Symbol
+		* &&
+		* ||
+- Added error
+- Added position
+
 // 3/7/2024 - 3/8/2024
 - Added BinaryExpr node
 -----------

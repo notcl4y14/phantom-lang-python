@@ -1,3 +1,4 @@
+from source.error import *
 from source.nodes import *
 # from nodes import *
 # import nodes
@@ -33,17 +34,19 @@ class Parser:
 		while self.not_eof():
 			expr = self.parse_expr()
 
-			if (expr != None):
+			if type(expr) == Error:
+				return expr
+			if expr != None:
 				program.push(expr)
 		
 		return program
 	
 	# ===========================
 
-	def parse_bin_expr(self, ops, func):
+	def parse_bin_expr(self, ops, func, type = "Operator"):
 		left = func()
 
-		while self.not_eof() and self.at().type == "Operator" and self.at().value in ops:
+		while self.not_eof() and self.at().type == type and self.at().value in ops:
 			op = self.yum()
 			right = func()
 			left = BinaryExpr(left, op, right)
@@ -53,9 +56,15 @@ class Parser:
 	# ===========================
 	
 	def parse_expr(self):
-		return self.parse_add_expr()
+		return self.parse_comp_expr()
 	
 	# ===========================
+
+	def parse_logic_expr(self):
+		return self.parse_bin_expr(["!", "&&", "||"], self.parse_comp_expr, "Symbol")
+
+	def parse_comp_expr(self):
+		return self.parse_bin_expr(["<", ">", "<=", ">=", "==", "!="], self.parse_add_expr)
 	
 	def parse_add_expr(self):
 		return self.parse_bin_expr(["+", "-"], self.parse_mult_expr)
@@ -84,7 +93,7 @@ class Parser:
 			value = self.parse_expr()
 
 			if not (self.at().type == "Closure" and self.at().value == ")"):
-				raise "Expected closing parenthesis"
+				return Error("Expected closing parenthesis", self.at().pos)
 			
 			self.yum()
 			return value
