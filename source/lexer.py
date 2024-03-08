@@ -58,6 +58,8 @@ class Lexer:
 			
 			self.yum()
 		
+		tokens.append(Token("EOF"))
+		
 		return tokens
 	
 	def lex_number(self) -> Token:

@@ -1,6 +1,1 @@
-let π = 3.14;
-let x = 10;
-let y = 4;
-let z = (x + y);
-
-let str = "PI is " + (string) π;
+10 + (5 - 4)

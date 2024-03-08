@@ -7,6 +7,16 @@
 // UNDER CONSTRUCTION VERSIONS
 // ---------------------------------------------------
 
+// 3/7/2024 - 3/8/2024
+- Added BinaryExpr node
+-----------
+- Created parser.py
+- Added nodes
+	+ Program
+	+ NumericLiteral
+	+ StringLiteral
+	+ Literal
+
 // 3/7/2024
 - The language now runs the files
 - Created "util" folder

@@ -1,5 +1,6 @@
 import sys
 from source.lexer import *
+from source.parser import *
 from util.file import *
 
 def run(code: str, flags):
@@ -7,6 +8,11 @@ def run(code: str, flags):
 
 	if "--lexer" in flags:
 		print(tokens)
+	
+	ast = parse(tokens)
+
+	if "--parser" in flags:
+		print(ast)
 
 def main():
 	args = sys.argv
