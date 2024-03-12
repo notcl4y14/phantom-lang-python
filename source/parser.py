@@ -29,7 +29,7 @@ class Parser:
 	# ===========================
 
 	def parse(self):
-		program = Program()
+		program = Program().set_pos([self.tokens[0].pos[0], self.tokens[-1].pos[1]])
 
 		while self.not_eof():
 			expr = self.parse_expr()
@@ -49,7 +49,7 @@ class Parser:
 		while self.not_eof() and self.at().type == type and self.at().value in ops:
 			op = self.yum()
 			right = func()
-			left = BinaryExpr(left, op, right)
+			left = BinaryExpr(left, op, right).set_pos([left.pos[0], right.pos[1]])
 		
 		return left
 	
@@ -82,11 +82,11 @@ class Parser:
 
 		# Values
 		if token.type in ("Int", "Float"):
-			return NumericLiteral(token.value)
+			return NumericLiteral(token.value).set_pos([token.pos[0], token.pos[1]])
 		elif token.type == "String":
-			return StringLiteral(token.value)
+			return StringLiteral(token.value).set_pos([token.pos[0], token.pos[1]])
 		elif token.type == "Literal":
-			return Literal(token.value)
+			return Literal(token.value).set_pos([token.pos[0], token.pos[1]])
 		
 		# Parenthesised expression
 		elif token.type == "Closure" and token.value == "(":

@@ -7,6 +7,13 @@
 // UNDER CONSTRUCTION VERSIONS
 // ---------------------------------------------------
 
+// 3/12/2024
+- Created interpreter.py
+- Created runtime_value.py
+- Added evaluation types to the interpreter
+	+ Program
+	+ NumericLiteral: int | float
+
 // 3/8/2024
 - The debug output now has closures
 - Added more values to token types

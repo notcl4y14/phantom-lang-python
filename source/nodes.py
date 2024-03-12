@@ -1,5 +1,14 @@
-class Program:
+class Node:
 	def __init__(self):
+		self.pos = []
+
+	def set_pos(self, pos):
+		self.pos = pos
+		return self
+
+class Program(Node):
+	def __init__(self):
+		super()
 		self.body = []
 	
 	def push(self, value):
@@ -8,29 +17,33 @@ class Program:
 	def __repr__(self):
 		return f"Program {self.body}"
 
-class NumericLiteral:
+class NumericLiteral(Node):
 	def __init__(self, value):
+		super()
 		self.value = value
 	
 	def __repr__(self):
 		return f"NumericLiteral ({self.value})"
 
-class StringLiteral:
+class StringLiteral(Node):
 	def __init__(self, value):
+		super()
 		self.value = value
 	
 	def __repr__(self):
 		return f"StringLiteral ({self.value})"
 
-class Literal:
+class Literal(Node):
 	def __init__(self, value):
+		super()
 		self.value = value
 	
 	def __repr__(self):
 		return f"Literal ({self.value})"
 
-class BinaryExpr:
+class BinaryExpr(Node):
 	def __init__(self, left, op, right):
+		super()
 		self.left = left
 		self.op = op
 		self.right = right

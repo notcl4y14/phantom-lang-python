@@ -2,6 +2,7 @@ import sys
 from source.error import *
 from source.lexer import *
 from source.parser import *
+from source.interpreter import *
 from util.file import *
 
 def repr(name, contents, line_width = 24):
@@ -31,6 +32,15 @@ def run(filename: str, code: str, flags):
 
 	if "--parser" in flags:
 		repr("AST", ast)
+	
+	result = interpret(ast)
+
+	if type(result) == Error:
+		print(result)
+		return
+
+	if "--last-eval" in flags:
+		repr("Last Evaluated value", result)
 
 def main():
 	args = sys.argv
