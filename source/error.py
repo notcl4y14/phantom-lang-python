@@ -7,14 +7,14 @@ class Error:
 		filename = self.pos[0].filename
 		details = self.details
 
-		line = self.pos[0].line
+		line = self.pos[0].line + 1
 
-		if self.pos[0].line == self.pos[1].line:
-			line = f"{self.pos[0].line}-{self.pos[1].line}"
+		if self.pos[0].line != self.pos[1].line:
+			line = f"{self.pos[0].line + 1}-{self.pos[1].line + 1}"
 			
-		column = self.pos[0].column
+		column = self.pos[0].column + 1
 
-		if self.pos[0].column == self.pos[1].column:
-			column = f"{self.pos[0].column}-{self.pos[1].column}"
+		if self.pos[0].column != self.pos[1].column:
+			column = f"{self.pos[0].column + 1}-{self.pos[1].column + 1}"
 		
 		return f"{filename}: {line} : {column} : {details}"

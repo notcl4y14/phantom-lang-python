@@ -8,6 +8,10 @@
 // ---------------------------------------------------
 
 // 3/12/2024
+- Added BinaryExpr evaluation for interpreter
+- Added the Operator() method to runtime value
+- Fixed error formatting
+-----------
 - Created interpreter.py
 - Created runtime_value.py
 - Added evaluation types to the interpreter
