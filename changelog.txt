@@ -7,6 +7,13 @@
 // UNDER CONSTRUCTION VERSIONS
 // ---------------------------------------------------
 
+// 3/15/2024 - 3/16/2024
+- Added more errors in the parser
+	+ Looks like error checking will be used a lot for getting expressions
+- Added var declaration expr
+-----------
+- Added comments
+
 // 3/12/2024
 - Added BinaryExpr evaluation for interpreter
 - Added the Operator() method to runtime value

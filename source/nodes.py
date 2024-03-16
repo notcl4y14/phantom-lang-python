@@ -41,6 +41,14 @@ class Literal(Node):
 	def __repr__(self):
 		return f"Literal ({self.value})"
 
+class Identifier(Node):
+	def __init__(self, value):
+		super()
+		self.value = value
+	
+	def __repr__(self):
+		return f"Identifier ({self.value})"
+
 class BinaryExpr(Node):
 	def __init__(self, left, op, right):
 		super()
@@ -50,3 +58,13 @@ class BinaryExpr(Node):
 	
 	def __repr__(self):
 		return f"BinaryExpr ({self.left} {self.op} {self.right})"
+
+class VarDeclaration(Node):
+	def __init__(self, ident, value, type):
+		super()
+		self.ident = ident
+		self.value = value
+		self.type = type
+	
+	def __repr__(self):
+		return f"VarDeclaration ({self.ident}: {self.type} = {self.value})"

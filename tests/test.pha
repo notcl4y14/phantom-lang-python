@@ -1,1 +1,5 @@
-(10 + 4) / 2 + true
+// lol
+/* Multiline
+   Comment */
+// let x: int = 12 + 4;
+12 + 4

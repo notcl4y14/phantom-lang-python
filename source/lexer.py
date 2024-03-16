@@ -26,6 +26,12 @@ class Lexer:
 		except:
 			return ""
 	
+	def at_range(self, range = 0, delta = 0) -> str:
+		try:
+			return self.code[(self.pos.index + delta):(self.pos.index + range + delta)]
+		except:
+			return ""
+	
 	def yum(self, delta=1) -> str:
 		prev = self.at()
 		self.pos.advance(self.at(), delta)
@@ -53,6 +59,12 @@ class Lexer:
 
 					# Prevents the line from adding a new token
 					self.yum(2)
+					continue
+				
+				# Comments
+				elif self.at() == "/" and self.at(1) in "/*":
+					tokens.append(self.lex_comment())
+					self.yum()
 					continue
 				
 				# That line
@@ -141,6 +153,48 @@ class Lexer:
 			return Token("Literal", id_str).set_pos([left_pos, right_pos])
 		
 		return Token("Ident", id_str).set_pos([left_pos, right_pos])
+	
+	def lex_comment(self) -> Token:
+		if self.at(1) == "/":
+			return self.lex_comment_one()
+		elif self.at(1) == "*":
+			return self.lex_comment_multi()
+	
+	def lex_comment_one(self) -> Token:
+		left_pos = self.pos.clone()
+		comment_str = ""
+
+		self.yum(2)          # Yum "//"
+
+		while self.not_eof() and self.at() != "\n":
+			comment_str += self.yum()
+		
+		right_pos = self.pos.clone()
+
+		return Token("Comment", comment_str).set_pos([left_pos, right_pos])
+	
+	def lex_comment_multi(self) -> Token:
+		left_pos = self.pos.clone()
+		comment_str = ""
+		# closure_count = 1
+
+		self.yum(2)          # Yum "/*"
+
+		# while self.not_eof() and closure_count < 0:
+			# print(self.at_range(2), self.at_range(2) == "*/")
+			# if self.at_range(2) == "/*":
+				# closure_count += 1
+			# elif self.at_range(2) == "*/":
+				# closure_count -= 1
+			
+			# print(self.at())
+		while self.not_eof() and self.at_range(2) != "*/":
+			comment_str += self.yum()
+		
+		self.yum() # Yum slash in "*/"
+		right_pos = self.pos.clone()
+
+		return Token("Comment", comment_str).set_pos([left_pos, right_pos])
 
 def lexerize(filename: str, code: str):
 	lexer = Lexer(filename, code)
