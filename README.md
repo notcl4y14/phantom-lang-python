@@ -1,5 +1,7 @@
 # phantom-lang
 
+Yep, archived now. "Because I kind of felt that python is a little bit overwhelming"
+
 Just a programming language in development.
 The syntax is JS/TS-like.
 
